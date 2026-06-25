@@ -1,0 +1,46 @@
+import { headerKeys } from "./consts.js";
+import { InngestFunction } from "../components/InngestFunction.js";
+import { Inngest } from "../components/Inngest.js";
+
+//#region src/helpers/assertions.ts
+/**
+* While developers can often use `instanceof` to check if an object is a class
+* instance, this is not always reliable, especially when dealing with objects
+* that may have been created in different execution contexts or across
+* different versions of the library.
+*
+* This module provides a set of type guards that use `*.Like` interfaces to
+* recognize the objects instead of any other typing.
+*
+* These can be used internally and externally.
+*
+* @module
+*/
+/**
+* Asserts that the given `input` is an `Inngest` object.
+*/
+const isInngest = (input) => {
+	return input[Symbol.toStringTag] === Inngest.Tag;
+};
+/**
+* Asserts that the given `input` is an `InngestFunction` object.
+*/
+const isInngestFunction = (input) => {
+	return input[Symbol.toStringTag] === InngestFunction.Tag;
+};
+/**
+* Asserts that the given `input` is a request originating from Inngest.
+*/
+const isInngestRequest = (input) => {
+	try {
+		const runId = input.headers.get(headerKeys.InngestRunId);
+		const signature = input.headers.get(headerKeys.Signature);
+		return Boolean(runId && typeof signature === "string");
+	} catch {
+		return false;
+	}
+};
+
+//#endregion
+export { isInngest, isInngestFunction, isInngestRequest };
+//# sourceMappingURL=assertions.js.map
