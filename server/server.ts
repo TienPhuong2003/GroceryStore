@@ -7,6 +7,9 @@ import uploadRouter from "./route/uploadRouter.js";
 import orderRouter from "./route/orderRouter.js";
 import { serve } from "inngest/express";
 import { inngest, functions } from "./inngest/index.js"
+import addressRouter from "./route/addressRouter.js";
+import adminRouter from "./route/adminRouter.js";
+import deliveryPartnerRouter from "./route/deliveryPartnerRouter.js";
 
 
 dotenv.config();
@@ -28,9 +31,12 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use('/api/auth', authRouter)
+app.use('api/admin', adminRouter)
 app.use('/api/products', productRouter)
+app.use('/api/delivery', deliveryPartnerRouter)
 app.use('/api/upload', uploadRouter)
 app.use('/api/orders', orderRouter)
+app.use('/api/addresses', addressRouter)
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.use((error: any, req: Request, res: Response, next: NextFunction)=>{
