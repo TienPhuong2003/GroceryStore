@@ -178,6 +178,8 @@ SMTP_PASSWORD=your_smtp_password
 ---
 
 ## License
+This project only serve for learning or portfolio purpose
+
 
 ISC
 
