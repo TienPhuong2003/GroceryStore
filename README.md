@@ -181,8 +181,4 @@ SMTP_PASSWORD=your_smtp_password
 This project only serve for learning or portfolio purpose
 
 
-ISC
 
----
-
-**Developed by:** TienPhuong2003
